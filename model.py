@@ -7,17 +7,7 @@ from einops import repeat, rearrange
 from einops.layers.torch import Rearrange
 
 from timm.models.layers import trunc_normal_
-from timm.models.vision_transformer import Block     # change to timm.vision for masked autoencoder
-
-def random_indexes(size : int):
-    forward_indexes = np.arange(size)
-    np.random.shuffle(forward_indexes)
-    backward_indexes = np.argsort(forward_indexes)
-    return forward_indexes, backward_indexes
-
-def take_indexes(sequences, indexes):
-    return torch.gather(sequences, 0, repeat(indexes, 't b -> t b c', c=sequences.shape[-1]))
-
+from timm.models.vision_transformer import Block
 
 class TokenLearnerModule(torch.nn.Module):
     def __init__(self, S, c, h) -> None:
