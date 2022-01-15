@@ -1,6 +1,8 @@
 # TokenLearner in Pytorch
 
-## Unofficial Pytorch implementation of TokenLearner by Ryoo et al. from Google AI
+## Unofficial Pytorch implementation of TokenLearner by Ryoo et al. from Google AI 
+* [TokenLearner: Adaptive Space-Time Tokenization for Videos](https://openreview.net/forum?id=z-l1kpDXs88)
+* [Official TokenLearner code](https://github.com/google-research/scenic/blob/main/scenic/projects/token_learner/model.py)
 
 The following figure presents a pictorial overview of the module
 ([source](https://ai.googleblog.com/2021/12/improving-vision-transformer-efficiency.html)).
