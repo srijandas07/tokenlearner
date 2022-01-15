@@ -52,13 +52,9 @@ if __name__ == '__main__':
     val_dataloader = torch.utils.data.DataLoader(val_dataset, load_batch_size, shuffle=False, num_workers=4)
     device = 'cuda' if torch.cuda.is_available() else 'cpu'
 
-    if args.pretrained_model_path is not None:
-        model = torch.load(args.pretrained_model_path, map_location='cpu')
-        writer = SummaryWriter(os.path.join('logs', 'cifar10', 'pretrain-cls'))
-    else:
-        model = MAE_ViT()
-        writer = SummaryWriter(os.path.join('logs', 'cifar10', 'scratch-cls'))
-    model = ViT_Classifier(model.encoder, num_classes=10).to(device)
+    model = ViT_Classifier(use_token_learner=True, token_learner_units=4,
+                           token_learner_layer=8, num_classes=10).to(device)
+    writer = SummaryWriter(os.path.join('logs', 'cifar10', 'token-learner'))
 
     loss_fn = torch.nn.CrossEntropyLoss()
     acc_fn = lambda logit, label: torch.mean((logit.argmax(dim=-1) == label).float())
